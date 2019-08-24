@@ -1,3 +1,6 @@
 <?php
 
-Route::get('/routes/{route}', 'RoutesController@show');
+Route::prefix('routes')->name('routes.')->group(function() {
+    Route::get('/{route}', 'RoutesController@show');
+});
+

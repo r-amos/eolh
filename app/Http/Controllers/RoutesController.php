@@ -46,7 +46,8 @@ class RoutesController extends Controller
      */
     public function show(Route $route)
     {
-        return view('routes.show', compact('route'));
+        return view('routes.show')
+            ->with(compact('route'));
     }
 
     /**
