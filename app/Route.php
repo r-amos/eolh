@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Support\SecondsToFormattedString;
 use Illuminate\Database\Eloquent\Model;
 
 class Route extends Model
@@ -31,7 +32,7 @@ class Route extends Model
      */
     public function getFormattedDateAttribute(): string
     {
-        return $this->date_time->format("F jS, Y");
+        return $this->date_time->format("jS F, Y");
     }
 
     /**
@@ -61,10 +62,8 @@ class Route extends Model
      */
     public function getFormattedDurationAttribute(): string
     {
-        $hours   = floor($this->duration / 3600);
-        $minutes = floor($this->duraton / 60) % 60;
-        $seconds = $this->duration % 60;
-
-        return "$hours hours, $minutes minutes and $seconds seconds";
+        $secondsToString = resolve(SecondsToFormattedString::class);
+        $secondsToString->setSeconds($this->duration);
+        return $secondsToString->convert();
     }
 }
