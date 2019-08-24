@@ -15,12 +15,30 @@ class Login extends TestCase
 
     /**
      *
+     * @return string
+     */
+    protected function getLoginRoute(): string
+    {
+        return route('login');
+    }
+
+    /**
+     *
+     * @return string
+     */
+    protected function getHomeRoute(): string
+    {
+        return route('home');
+    }
+
+    /**
+     *
      * @test
      * @return void
      */
     public function user_can_view_login_page(): void
     {
-        $this->get('/login')
+        $this->get($this->getLoginRoute())
             ->assertStatus(200);
     }
 
@@ -33,8 +51,8 @@ class Login extends TestCase
     {
         $user = factory(User::class)->create();
         $this->actingAs($user)
-            ->get('/login')
-            ->assertRedirect('/home');
+            ->get($this->getLoginRoute())
+            ->assertRedirect($this->getHomeRoute());
     }
 
     /**
@@ -46,10 +64,10 @@ class Login extends TestCase
     {
         $password = Hash::make('password');
         $user = factory(User::class)->create(compact('password'));
-        $this->from('login')->post('/login', [
+        $this->from($this->getLoginRoute())->post($this->getLoginRoute(), [
             'email' => $user->email,
             'password' => 'password'
-        ])->assertRedirect('/home');
+        ])->assertRedirect($this->getHomeRoute());
         $this->assertAuthenticatedAs($user);
     }
 
@@ -61,11 +79,11 @@ class Login extends TestCase
     public function user_cannot_login_with_incorrect_credentials(): void
     {
         $user = factory(User::class)->create();
-        $response = $this->from('/login')
+        $response = $this->from($this->getLoginRoute())
             ->post('login', [
                 'email' => $user->email,
                 'password' => 'incorrect-password'
-            ])->assertRedirect('/login');
+            ])->assertRedirect($this->getLoginRoute());
         $this->assertTrue(session()->get('errors')->has('email'));
         
     }

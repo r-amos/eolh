@@ -11,6 +11,15 @@ class ViewRoutes extends TestCase
     use RefreshDatabase;
 
     /**
+     * @param integer $id
+     * @return string
+     */
+    protected function getRoutesRoute(int $id): string
+    {
+        return route('routes.show', $id);
+    }
+
+    /**
      * @test
      * @return void
      */
@@ -18,7 +27,7 @@ class ViewRoutes extends TestCase
     {
         $this->withoutExceptionHandling();
         $route = factory(Route::class)->create();
-        $this->get("/routes/" . $route->getKey())
+        $this->get($this->getRoutesRoute($route->getKey()))
             ->assertOk()
             ->assertSee($route->title)
             ->assertSee($route->formatted_date)
