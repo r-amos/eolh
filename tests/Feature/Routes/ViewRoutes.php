@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Route;
 
-class CanViewRoute extends TestCase
+class ViewRoutes extends TestCase
 {
     use RefreshDatabase;
 
