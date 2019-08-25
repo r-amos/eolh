@@ -5,7 +5,7 @@ namespace App;
 use App\Support\SecondsToFormattedString;
 use Illuminate\Database\Eloquent\Model;
 
-class Route extends Model
+class Activity extends Model
 {
     /**
      * Model Attributes
@@ -26,7 +26,7 @@ class Route extends Model
     ];
 
     /**
-     * Get The Route Date
+     * Get The Activity Date
      *
      * @return string
      */
@@ -36,7 +36,7 @@ class Route extends Model
     }
 
     /**
-     * Get The Distance of the Route
+     * Get The Distance of the Activity
      *
      * @return string
      */

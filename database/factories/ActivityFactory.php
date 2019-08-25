@@ -2,11 +2,11 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Route;
+use App\Activity;
 use Faker\Generator as Faker;
 use Illuminate\Support\Carbon;
 
-$factory->define(Route::class, function (Faker $faker) {
+$factory->define(Activity::class, function (Faker $faker) {
     return [
         'title'         => $this->faker->sentence,
         'date_time'     => Carbon::parse('1st January 2000 12:00'),

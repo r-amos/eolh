@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Route;
+use App\Activity;
 use Illuminate\Http\Request;
 
-class RoutesController extends Controller
+class ActivitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class RoutesController extends Controller
      */
     public function create()
     {
-        return view('routes.create');
+        return view('activities.create');
     }
 
     /**
@@ -35,29 +35,29 @@ class RoutesController extends Controller
      */
     public function store(Request $request)
     {
-        $route = Route::create($request->all());
-        return redirect(route('routes.show', $route->getKey()));
+        $activity = Activity::create($request->all());
+        return redirect(route('activities.show', $activity->getKey()));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Route  $route
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function show(Route $route)
+    public function show(Activity $activity)
     {
-        return view('routes.show')
-            ->with(compact('route'));
+        return view('activities.show')
+            ->with(compact('activity'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Route  $route
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function edit(Route $route)
+    public function edit(Activity $activity)
     {
         //
     }
@@ -66,10 +66,10 @@ class RoutesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Route  $route
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Route $route)
+    public function update(Request $request, Activity $activity)
     {
         //
     }
@@ -77,10 +77,10 @@ class RoutesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Route  $route
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Route $route)
+    public function destroy(Activity $activity)
     {
         //
     }
