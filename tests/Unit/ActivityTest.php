@@ -2,11 +2,11 @@
 
 namespace Tests\Unit;
 
-use App\Route;
+use App\Activity;
 use Tests\TestCase;
 use Illuminate\Support\Carbon;
 
-class RouteTest extends TestCase
+class ActivityTest extends TestCase
 {
     /**
      * @test
@@ -14,7 +14,7 @@ class RouteTest extends TestCase
      */
     public function date_is_formatted($date, $expected): void
     {
-        $route = factory(Route::class)->make(['date_time' => $date]);
+        $route = factory(Activity::class)->make(['date_time' => $date]);
         $this->assertEquals($route->formatted_date, $expected);
     }
 
@@ -36,7 +36,7 @@ class RouteTest extends TestCase
      */
     public function duration_is_formatted($duration, $expected): void
     {
-        $route = factory(Route::class)->make(['duration' => $duration]);
+        $route = factory(Activity::class)->make(['duration' => $duration]);
         $this->assertEquals($route->formatted_duration, $expected);
     }
 

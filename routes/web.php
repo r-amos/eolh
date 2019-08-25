@@ -4,10 +4,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('routes')->name('routes.')->group(function () {
+Route::prefix('activities')->name('activities.')->group(function () {
     Route::group(['middleware' => ['auth']], function () {
-        Route::get('/create', 'RoutesController@create')->name('create');
-        Route::post('/', 'RoutesController@store')->name('store');
+        Route::get('/create', 'ActivitiesController@create')->name('create');
+        Route::post('/', 'ActivitiesController@store')->name('store');
     });
-    Route::get('/{route}', 'RoutesController@show')->name('show');
+    Route::get('/{activity}', 'ActivitiesController@show')->name('show');
 });
