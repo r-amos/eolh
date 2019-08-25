@@ -24,7 +24,7 @@ class RoutesController extends Controller
      */
     public function create()
     {
-        //
+        return view('routes.create');
     }
 
     /**
@@ -35,7 +35,8 @@ class RoutesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $route = Route::create($request->all());
+        return redirect(route('routes.show', $route->getKey()));
     }
 
     /**
