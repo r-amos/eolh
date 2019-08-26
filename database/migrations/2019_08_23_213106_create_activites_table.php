@@ -20,7 +20,10 @@ class CreateActivitesTable extends Migration
             $table->string('distance');
             $table->string('duration');
             $table->string('elevation');
-            $table->text('description');            
+            $table->text('description'); 
+            $table->bigInteger('typeable_id');
+            $table->string('typeable_type');      
+            $table->bigInteger('user_id');      
             $table->timestamps();
         });
     }
