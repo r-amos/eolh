@@ -3,10 +3,14 @@
 namespace Tests\Feature\Activities;
 
 use App\User;
+use App\Route;
+use App\Run;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Activity;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class AddActivityTest extends TestCase
 {
@@ -71,22 +75,48 @@ class AddActivityTest extends TestCase
      * @test
      * @return void
      */
-    public function user_can_add_a_activity(): void
+    public function user_can_add_a_activity_of_type_run(): void
     {
 
-        $this->withExceptionHandling();
+        // Set Up
+        Storage::fake();
+        $uploadedFile = UploadedFile::fake()->create('test.gpx');
         $user = factory(User::class)->create();
         $this->actingAs($user);
         $post = factory(Activity::class)->make()->toArray();
 
-        $response = $this->post($this->getAddActivityName(), $post);
-
+        // Post Data...
+        $response = $this->post(
+            $this->getAddActivityName(),
+            array_merge($post, ['route' => $uploadedFile])
+        );
+        
+        // Assert A Single Activity, Route & Run Have Been Created
+        $activity = Activity::first();
         $this->assertCount(1, Activity::all());
+        $this->assertCount(1, Route::all());
+        $this->assertCount(1, Run::all());
+
+        // Response Assertions
+        $response->assertRedirect($this->getActivityName($activity->getKey()));
+        
+        
+        // Assert Database Contains Activity, Route 
         $this->assertDatabaseHas('activities', [
             'title' => $post['title'],
-            'description' => $post['description']
+            'description' => $post['description'],
+            'typeable_id' => Run::first()->getKey(),
+            'typeable_type' => Run::class
         ]);
-        $activity = Activity::first();
-        $response->assertRedirect($this->getActivityName($activity->getkey()));
+        $this->assertDatabaseHas('routes', [
+            'activity_id' => $activity->getKey()
+        ]);
+
+        // Assert Route File Uploaded To Storage
+        Storage::assertExists(Route::first()->url);
+
+        // Assert Correct Relationships Exist
+        $this->assertInstanceOf(Run::class, $activity->typeable);
+        $this->assertTrue($user->is($activity->user));
     }
 }

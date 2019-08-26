@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Activity;
+use App\Route;
+use App\Run;
+use Exception;
 use Illuminate\Http\Request;
 
 class ActivitiesController extends Controller
@@ -35,7 +38,17 @@ class ActivitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $activity = Activity::create($request->all());
+
+        $activity = auth()->user()
+            ->activities()
+            ->make($request->input());
+        Run::create()->activity()->save($activity);
+        $location = $request->file('route')
+            ->store('routes');
+        $activity->route()
+            ->create([
+                'url' => $location
+            ]);
         return redirect(route('activities.show', $activity->getKey()));
     }
 
