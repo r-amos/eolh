@@ -4,6 +4,10 @@ namespace App;
 
 use App\Support\SecondsToFormattedString;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Route;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Activity extends Model
 {
@@ -65,5 +69,32 @@ class Activity extends Model
         $secondsToString = resolve(SecondsToFormattedString::class);
         $secondsToString->setSeconds($this->duration);
         return $secondsToString->convert();
+    }
+
+    /**
+     *
+     * @return HasOne
+     */
+    public function route(): HasOne
+    {
+        return $this->hasOne(Route::class);
+    }
+
+    /**
+     *
+     * @return MorphTo
+     */
+    public function typeable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
