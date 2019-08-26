@@ -23,9 +23,9 @@ class ViewActivities extends TestCase
      * @test
      * @return void
      */
-    public function can_view_activity(): void
+    public function can_view_run_activity(): void
     {
-        $activity = factory(Activity::class)->create();
+        $activity = factory(Activity::class)->states(['withUser','run'])->create();
         $this->get($this->getActivitiesRoute($activity->getKey()))
             ->assertOk()
             ->assertSee($activity->title)
