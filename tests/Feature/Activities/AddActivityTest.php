@@ -77,7 +77,7 @@ class AddActivityTest extends TestCase
      */
     public function user_can_add_a_activity_of_type_run(): void
     {
-
+        
         // Set Up
         Storage::fake();
         $uploadedFile = UploadedFile::fake()->create('test.gpx');
@@ -90,7 +90,7 @@ class AddActivityTest extends TestCase
             $this->getAddActivityName(),
             array_merge($post, ['route' => $uploadedFile])
         );
-        
+
         // Assert A Single Activity, Route & Run Have Been Created
         $activity = Activity::first();
         $this->assertCount(1, Activity::all());
@@ -99,8 +99,8 @@ class AddActivityTest extends TestCase
 
         // Response Assertions
         $response->assertRedirect($this->getActivityName($activity->getKey()));
-        
-        
+
+
         // Assert Database Contains Activity, Route 
         $this->assertDatabaseHas('activities', [
             'title' => $post['title'],

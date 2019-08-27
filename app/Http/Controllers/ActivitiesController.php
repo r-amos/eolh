@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Activity\Request\HandleCreateActivityPayload;
 use App\Activity;
 use App\Route;
 use App\Run;
 use Exception;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreActivity;
 
 class ActivitiesController extends Controller
 {
@@ -33,23 +35,13 @@ class ActivitiesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param StoreActivity $request
+     * @param  HandleCreateActivityPayload $action
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreActivity $request, HandleCreateActivityPayload $action)
     {
-
-        $activity = auth()->user()
-            ->activities()
-            ->make($request->input());
-        Run::create()->activity()->save($activity);
-        $location = $request->file('route')
-            ->store('routes');
-        $activity->route()
-            ->create([
-                'url' => $location
-            ]);
-        return redirect(route('activities.show', $activity->getKey()));
+        return redirect(route('activities.show', $action->execute()->getKey()));
     }
 
     /**

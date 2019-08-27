@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Activity extends Model
 {
+    
     /**
      * Model Attributes
      *
@@ -69,6 +70,26 @@ class Activity extends Model
         $secondsToString = resolve(SecondsToFormattedString::class);
         $secondsToString->setSeconds($this->duration);
         return $secondsToString->convert();
+    }
+
+    /**
+     *
+     * @param array $properties
+     * @return Activity
+     */
+    public function createRoute(array $properties): Activity
+    {
+        $this->route()->create($properties);
+        return $this;
+    }
+
+    /**
+     *
+     * @return Activity
+     */
+    public function createType(): Activity
+    {
+        return Run::create()->activity()->save($this);
     }
 
     /**
