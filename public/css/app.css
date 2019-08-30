@@ -9,7 +9,15 @@
   box-sizing: inherit;
 }
 
-body {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul {
   margin: 0;
   padding: 0;
 }
@@ -17,5 +25,83 @@ body {
 ol,
 ul {
   list-style: none;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  background-color: #ecf0f1;
+  font-size: 1.6em;
+}
+
+.button {
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  display: block;
+  margin: 1rem;
+}
+
+.button__cta {
+  font-weight: 800;
+  padding: 0.5rem 1.5rem;
+}
+
+.button__cta--primary {
+  background-color: #e74c3c;
+  border: 5px solid #e74c3c;
+  color: white;
+}
+
+.button__cta--secondary {
+  border: 5px solid #e74c3c;
+  color: #e74c3c;
+}
+
+.button__cta a:visited {
+  color: inherit;
+}
+
+.input {
+  border-radius: 5px;
+  margin: 1rem;
+  line-height: 1.6rem;
+  padding: 5px;
+  border: none;
+}
+
+.welcome-title {
+  height: 100vh;
+  width: 25%;
+  margin: 0 auto;
+  transform: translateY(-15%);
+}
+
+.welcome-cta {
+  padding-top: 2rem;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.register {
+  background-color: green;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+}
+
+.container--align-end {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.container--align-column {
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
 }
 

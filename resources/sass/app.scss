@@ -1,8 +1,23 @@
+
 // Base
+@import 'utils/variables';
 @import 'base/reset';
+@import 'base/defaults';
+
+// Components
+@import 'components/button';
+@import 'components/input';
+@import 'components/title';
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+// Pages
+@import 'pages/welcome';
+
+//Layout
+@import 'layout/register';
+
 // Variables
-@import 'utils/variables';
+@import 'utils/alignment';
+
