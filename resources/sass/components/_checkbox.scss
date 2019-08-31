@@ -1,0 +1,38 @@
+.checkbox-container {
+    padding-left: 1rem;
+    > input[type='checkbox'] {
+        opacity: 0;
+    }
+    > input[type="checkbox"]:checked + label::after {
+        display: none;
+    }
+}
+
+.checkbox {
+    position: relative;
+    padding-left: 1rem;
+    cursor: pointer;
+    &:before {
+        content:"";
+        border: 5px solid #2d3436;
+        border-radius: 2px;
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: -2.4rem;
+        height: 100%;
+        width: 1.4em;
+    }
+    &:after {
+        content:"";
+        position: absolute;
+        bottom: 0.5rem;
+        left: -1rem;
+        display: inline-block;
+        transform: rotate(45deg);
+        height: 2.5rem;
+        width: 1rem;
+        border-bottom: 0.35rem solid #00B894;
+        border-right: 0.35rem solid #00B894;
+    }
+}
