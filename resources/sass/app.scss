@@ -3,20 +3,26 @@
 @import 'utils/variables';
 @import 'base/reset';
 @import 'base/defaults';
+@import 'base/typography';
 
 // Components
 @import 'components/button';
 @import 'components/input';
 @import 'components/title';
+@import 'components/errors';
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Pages
 @import 'pages/welcome';
+@import 'pages/register';
 
 //Layout
 @import 'layout/register';
+@import 'layout/form';
+@import 'layout/header';
+@import 'layout/navigation';
 
 // Variables
 @import 'utils/alignment';

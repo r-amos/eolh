@@ -62,10 +62,10 @@ class Register extends TestCase
         $guest = factory(User::class)->make();
 
         $response = $this->post($this->getRegisterRoute(), [
-            'email' => $guest->email,
-            'name' => $guest->name,
-            'password' => 'password',
-            'password_confirmation' => 'password'
+            'email'                 => $guest->email,
+            'name'                  => $guest->name,
+            'password'              => 'Password_1',
+            'password_confirmation' => 'Password_1'
         ]);
 
         $response->assertRedirect($this->getPostRegisterRoute());
@@ -73,9 +73,46 @@ class Register extends TestCase
         $this->assertAuthenticatedAs($user = User::first());
         $this->assertDatabaseHas('users', [
             'email' => $user->email,
-            'name' => $user->name
+            'name'  => $user->name
         ]);
-        $this->assertTrue(Hash::check('password', $user->password));
+        $this->assertTrue(Hash::check('Password_1', $user->password));
+    }
+
+    /**
+     * @test
+     * @dataProvider passwordProvider
+     * @return void
+     */
+    public function guest_cannot_register_with_invalid_password(string $password): void
+    {
+        $guest = factory(User::class)->make();
+
+        $response = $this->from($this->getRegisterRoute())->post($this->getRegisterRoute(), [
+            'email'                 => $guest->email,
+            'name'                  => $guest->name,
+            'password'              => $password,
+            'password_confirmation' => $password
+        ]);
+
+        $response->assertRedirect($this->getRegisterRoute());
+        $response->assertSessionHasErrorsIn('password');
+        $this->assertDatabaseMissing('users', [
+            'name' => $guest->name
+        ]);
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function passwordProvider(): array
+    {
+        return [
+            ['Missing Numeric'     => 'Password_'],
+            ['Missing Character'   => 'Password1'],
+            ['Missing Uppercase'   => 'password_1'],
+            ['Not Required Length' => 'pass'],
+        ];
     }
 
     /**
@@ -88,9 +125,9 @@ class Register extends TestCase
 
         $response = $this->from($this->getRegisterRoute())
             ->post($this->getRegisterRoute(), [
-                'email' => $guest->email,
-                'name' => $guest->name,
-                'password' => 'password',
+                'email'                 => $guest->email,
+                'name'                  => $guest->name,
+                'password'              => 'password',
                 'password_confirmation' => 'password'
             ]);
 
@@ -108,10 +145,10 @@ class Register extends TestCase
     public function guest_cannot_register_without_required_data(string $field, string $errorField = null): void
     {
         $payload = array_filter([
-            'email' => $this->faker->email,
-            'name' => $this->faker->name,
-            'password' => 'password',
-            'password_confirmation' => 'password'
+            'email'                     => $this->faker->email,
+            'name'                      => $this->faker->name,
+            'password'                  => 'password',
+            'password_confirmation'     => 'password'
         ], function ($key) use ($field) {
             return $key !== $field;
         }, ARRAY_FILTER_USE_KEY);
@@ -145,9 +182,9 @@ class Register extends TestCase
     public function guest_cannot_register_without_matching_passwords(): void
     {
         $this->from($this->getRegisterRoute())->post($this->getRegisterRoute(), [
-            'email' => $this->faker->email,
-            'name' => $this->faker->name,
-            'password' => 'password',
+            'email'     => $this->faker->email,
+            'name'      => $this->faker->name,
+            'password'  => 'password',
             'password_confirmation' => 'does not match'
 
         ])->assertRedirect($this->getRegisterRoute())

@@ -4,21 +4,23 @@
     text-align: center;
     display: block;
     margin: 1rem;
-    &__cta {
+    cursor: pointer;
+    font-weight: 800;
+    &__cta.button__cta {
         font-weight: 800;
         padding: 0.5rem 1.5rem;
-        &--primary {
-            background-color: $red;
-            border: 5px solid $red;
+        // Increase Specificity
+        &--primary.button__cta--primary {
+            background-color: $primary-hl;
+            border: 5px solid $primary-hl;
             color: white;
         }
         &--secondary {
-            border: 5px solid $red;
-            color: $red;
+            border: 5px solid $primary-hl;
+            color: $primary-hl;
         }
         a:visited {
-            color: inherit;
+            color: white;
         }
     }
-
 }

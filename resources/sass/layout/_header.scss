@@ -1,0 +1,9 @@
+.header {
+    display: flex;
+    &__logo {
+        position: absolute;
+        top: 2rem;
+        left: 1rem;
+        max-width: 5rem;
+    }
+}

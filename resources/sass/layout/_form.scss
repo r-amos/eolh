@@ -1,0 +1,10 @@
+.form {
+    background-color: $main-light;
+    padding: 3rem 1rem 0.5rem 1rem;
+    border-radius: 5px;
+    max-width: 29.5rem;
+    &__row {
+        padding: 0;
+        margin: 2rem 2rem;
+    }
+}

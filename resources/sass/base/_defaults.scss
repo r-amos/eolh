@@ -3,3 +3,7 @@ body {
     background-color: $body-bg;
     font-size: 1.6em;
 }
+
+html, body, #app, main {
+    height: 100%;
+}

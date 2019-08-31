@@ -49,9 +49,29 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'min:3'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => [
+                'required', 
+                'string', 
+                'min:8', 
+                'confirmed',
+                function($attribute, $value, $fail) {
+                    if (!preg_match('/[A-Z]/', $value)) {
+                        $fail($attribute . " must contain an uppercase letter");
+                    }
+                },
+                function($attribute, $value, $fail) {
+                    if (!preg_match('/[0-9]/', $value)) {
+                        $fail($attribute . " must contain a number");
+                    }
+                },
+                function($attribute, $value, $fail) {
+                    if (!preg_match('/[!@#$%^&*(),.?":{}|<>_]/', $value)) {
+                        $fail($attribute . " must contain special character");
+                    }
+                }, 
+            ],
         ]);
     }
 
