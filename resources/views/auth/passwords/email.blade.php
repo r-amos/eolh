@@ -7,7 +7,7 @@
                 @include('svg.eolh')
             </div>
             @if(session('status'))
-                <div>{{session('status')}}</div>
+                <div class="notification notification--success">{{session('status')}}</div>
             @endif
             <form action={{ route('password.email') }} method="POST" class="form container--align-column center-horizontal">
                 @csrf

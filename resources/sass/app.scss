@@ -11,13 +11,13 @@
 @import 'components/title';
 @import 'components/errors';
 @import 'components/checkbox';
+@import 'components/notification';
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Pages
 @import 'pages/welcome';
-@import 'pages/register';
 
 //Layout
 @import 'layout/register';
