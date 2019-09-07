@@ -1,4 +1,4 @@
-<nav class="navigation">
+<nav class="navigation margin-bottom-lg">
     <ul class="navigation navigation__bar">
         <li class="navigation__item">
             <a href="#">Profile</a>

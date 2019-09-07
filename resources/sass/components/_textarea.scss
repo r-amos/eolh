@@ -1,4 +1,5 @@
-.input {
+.textarea {
+    width: 100%;
     line-height: 2.25rem;
     padding: 1rem 1.75rem;
     border-radius: 5px;
@@ -8,12 +9,5 @@
     color: $contrast-secondary;
     &::placeholder {
         color: $main-dark;
-    }
-    &__file {
-        display: inline-block;
-        cursor: pointer;
-        & + input {
-            display: none;
-        }
     }
 }

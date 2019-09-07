@@ -5,7 +5,6 @@ namespace App\Actions\Activity\Request;
 use App\Activity;
 use Illuminate\Http\Request;
 use App\Contracts\ActivityProperties;
-use Exception;
 
 class HandleCreateActivityPayload
 {
@@ -135,8 +134,8 @@ class HandleCreateActivityPayload
             public function getActivityProperties(): array
             {
                 return [
-                    'title' => $this->title,
-                    'description' => $this->description
+                    'title'         => $this->title,
+                    'description'   => $this->description
                 ];
             }
 

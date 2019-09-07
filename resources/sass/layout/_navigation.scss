@@ -1,7 +1,7 @@
 .navigation {
     display: flex;
     width: 100%;
-    background-color: $contrast-secondary;
+    background-color: $main-dark;
     &__bar {
         flex-direction: row;
         justify-content: flex-end;
@@ -11,7 +11,7 @@
         margin: 1rem;
         > a, input {
             text-decoration: none;
-            color: $contrast-primary;
+            color: $main-light;
             font-weight: 800;
             letter-spacing: 0.75px;
             font-size: 1.6rem;
@@ -19,7 +19,7 @@
 
         input {
             display: block;
-            background-color: $contrast-secondary;
+            background-color: $main-dark;
             border: none;
             font-family: $font-family-sans-serif;
             font-weight: 800;           

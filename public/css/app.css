@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);html {
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,700);@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);html {
   box-sizing: border-box;
   font-size: 16px;
 }
@@ -20,6 +20,7 @@ ol,
 ul {
   margin: 0;
   padding: 0;
+  color: #2d3436;
 }
 
 ol,
@@ -49,7 +50,7 @@ main {
   border-radius: 5px;
   text-align: center;
   display: block;
-  margin: 1rem;
+  margin: 1rem 0rem;
   cursor: pointer;
   font-weight: 800;
 }
@@ -101,6 +102,46 @@ main {
 }
 
 .input::placeholder {
+  color: #808080;
+}
+
+.input__file {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.input__file + input {
+  display: none;
+}
+
+.textarea {
+  width: 100%;
+  line-height: 2.25rem;
+  padding: 1rem 1.75rem;
+  border-radius: 5px;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: #2d3436;
+}
+
+.textarea::-webkit-input-placeholder {
+  color: #808080;
+}
+
+.textarea::-moz-placeholder {
+  color: #808080;
+}
+
+.textarea:-ms-input-placeholder {
+  color: #808080;
+}
+
+.textarea::-ms-input-placeholder {
+  color: #808080;
+}
+
+.textarea::placeholder {
   color: #808080;
 }
 
@@ -173,9 +214,9 @@ main {
 
 .welcome-cta {
   padding-top: 2rem;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .form {
@@ -205,7 +246,7 @@ main {
   transform: translateY(-15%);
 }
 
-.form-title {
+.form-title-svg {
   transform: scale(0.75);
 }
 
@@ -223,7 +264,7 @@ main {
 .navigation {
   display: flex;
   width: 100%;
-  background-color: #2d3436;
+  background-color: #808080;
 }
 
 .navigation__bar {
@@ -239,7 +280,7 @@ main {
 .navigation__item > a,
 .navigation__item input {
   text-decoration: none;
-  color: #00B894;
+  color: #e6e6e6;
   font-weight: 800;
   letter-spacing: 0.75px;
   font-size: 1.6rem;
@@ -247,7 +288,7 @@ main {
 
 .navigation__item input {
   display: block;
-  background-color: #2d3436;
+  background-color: #808080;
   border: none;
   font-family: "Nunito", sans-serif;
   font-weight: 800;
@@ -279,5 +320,21 @@ main {
 
 .flex-row {
   flex-direction: row;
+}
+
+.flex-align-top {
+  justify-content: flex-start;
+}
+
+.flex-align-bottom {
+  justify-content: flex-end;
+}
+
+.margin-bottom-lg {
+  margin-bottom: 4rem;
+}
+
+.margin-bottom-md {
+  margin-bottom: 2rem;
 }
 
