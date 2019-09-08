@@ -29,7 +29,7 @@ ul {
 }
 
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: #ecf0f1;
   font-size: 1.6em;
 }
@@ -294,7 +294,7 @@ main {
   display: block;
   background-color: #808080;
   border: none;
-  font-family: "Nunito", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 800;
   font-size: 1.5rem;
   cursor: pointer;
