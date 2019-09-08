@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Activity\Request\HandleCreateActivityPayload;
+use App\Actions\Activity\Request\StoreActivity as StoreActivityAction;
 use App\Activity;
 use App\Route;
 use App\Run;
@@ -39,7 +39,7 @@ class ActivitiesController extends Controller
      * @param  HandleCreateActivityPayload $action
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreActivity $request, HandleCreateActivityPayload $action)
+    public function store(StoreActivity $request, StoreActivityAction $action)
     {
         return redirect(route('activities.show', $action->execute()->getKey()));
     }

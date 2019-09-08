@@ -5,7 +5,10 @@
     max-width: 29.5rem;
     &__row {
         padding: 0;
-        margin: 2rem 2rem;
+        margin: 2rem 2rem 0rem 2rem;
+        &--error {
+            margin: 0.5rem 2rem 0.5rem 2rem;
+        }
     }
 }
 

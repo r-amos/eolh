@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Contracts\ActivityProperties;
 use App\Activity;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
@@ -31,20 +30,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
-     *
-     * @param array $properties
-     * @return Activity
-     */
-    public function createActivity(ActivityProperties $props): Activity
-    {
-        
-        return $this->activities()
-            ->make($props->getActivityProperties())
-            ->createType()
-            ->createRoute($props->getRouteProperies());
-    }
 
     /**
      * The attributes that should be cast to native types.

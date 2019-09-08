@@ -228,7 +228,11 @@ main {
 
 .form__row {
   padding: 0;
-  margin: 2rem 2rem;
+  margin: 2rem 2rem 0rem 2rem;
+}
+
+.form__row--error {
+  margin: 0.5rem 2rem 0.5rem 2rem;
 }
 
 .flex-form {

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Activity extends Model
 {
-    
+
     /**
      * Model Attributes
      *
@@ -33,11 +33,14 @@ class Activity extends Model
     /**
      * Get The Activity Date
      *
-     * @return string
+     * @return null|string
      */
-    public function getFormattedDateAttribute(): string
+    public function getFormattedDateAttribute(): ?string
     {
-        return $this->date_time->format("jS F, Y");
+        if ($this->date_time) {
+            return $this->date_time->format("jS F, Y");
+        }
+        return null;
     }
 
     /**
@@ -45,9 +48,12 @@ class Activity extends Model
      *
      * @return string
      */
-    public function getFormattedDistanceAttribute(): string
+    public function getFormattedDistanceAttribute(): ?string
     {
-        return number_format($this->distance / 1.6, 2) . " miles";
+        if ($this->number_format) {
+            return number_format($this->distance / 1.6, 2) . " miles";
+        }
+        return null;
     }
 
     /**
@@ -55,9 +61,12 @@ class Activity extends Model
      *
      * @return string
      */
-    public function getFormattedElevationAttribute(): string
+    public function getFormattedElevationAttribute(): ?string
     {
-        return number_format($this->elevation) . " feet";
+        if ($this->elevation) {
+            return number_format($this->elevation) . " feet";
+        }
+        return null;
     }
 
     /**
@@ -65,11 +74,14 @@ class Activity extends Model
      *
      * @return string
      */
-    public function getFormattedDurationAttribute(): string
+    public function getFormattedDurationAttribute(): ?string
     {
-        $secondsToString = resolve(SecondsToFormattedString::class);
-        $secondsToString->setSeconds($this->duration);
-        return $secondsToString->convert();
+        if ($this->duration) {
+            $secondsToString = resolve(SecondsToFormattedString::class);
+            $secondsToString->setSeconds($this->duration);
+            return $secondsToString->convert();
+        }
+        return null;
     }
 
     /**
@@ -87,7 +99,7 @@ class Activity extends Model
      *
      * @return Activity
      */
-    public function createType(): Activity
+    public function createActivityType(): Activity
     {
         return Run::create()->activity()->save($this);
     }
